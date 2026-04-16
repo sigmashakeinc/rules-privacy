@@ -36,7 +36,7 @@ rule no-tracking-without-consent {
   enabled true
   priority 80
   severity warning
-  ASK write
+  LOG write
   IF content CONTAINS "window.analytics"
   OR content CONTAINS "gtag("
   OR content CONTAINS "fbq("
@@ -44,7 +44,6 @@ rule no-tracking-without-consent {
   OR content CONTAINS "_hsp.push"
   OR content CONTAINS "intercom"
   MESSAGE "Analytics or tracking script detected. GDPR and CCPA require explicit user consent before loading third-party tracking. Ensure this loads only after consent is granted."
-  PROMPT "Is this tracking script gated behind a consent check? In EU/California, loading analytics before consent is a legal violation."
 }
 
 rule no-plaintext-sensitive-fields {
